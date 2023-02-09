@@ -29,9 +29,8 @@ with open('TestScrapy/TestScrapy/myfile.html', 'w', encoding='utf-8') as f:
 
 f.close()
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
+
+
 
 
 class ProgHubParser(object):
