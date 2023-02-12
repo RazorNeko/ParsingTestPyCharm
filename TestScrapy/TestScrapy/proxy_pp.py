@@ -23,4 +23,4 @@ class ProxyList(scrapy.Spider):
                    'last_checked' : row.xpath('./td[8]/text()').extract_first(),
 
                    }
-#Pizda
+#Pizdagit
