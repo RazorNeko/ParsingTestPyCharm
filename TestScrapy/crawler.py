@@ -34,9 +34,9 @@ class ImdbSpider_2(scrapy.Spider):
       rating = row.xpath("./td[@class='ratingColumn imdbRating']/strong/text()").extract_first()
       ret_url = row.xpath("td[@class='titleColumn']/a/@href").extract_first().strip()
       row_url = self.base_url + ret_url
-      yield scrapy.Request(row_url,callback = self.parseOneMovie,meta={'rating':rating})
+      yield scrapy.Request(row_url, callback=self.parseOneMovie, meta={'rating':rating})
 
-  def parseOneMovie(self,response):
+  def parseOneMovie(self, response):
     item = MovieItem()
 
     item['rating'] = response.meta['rating'][0]
@@ -44,7 +44,7 @@ class ImdbSpider_2(scrapy.Spider):
     item['title'] = response.xpath(".//*/div[@class='title_wrapper']/h1/text()").extract_first().strip()
     item['year'] = response.xpath('//*[@id="__next"]/main/div/section[1]/section/div[3]/section/section/div[2]/div[1]/div/ul/li[1]/span/text()').extract()[0]
 
-    print('huyi')
+    print('Debug output')
 
     item['summary'] = response.xpath(".//*/div[@class='summary_text']/text()").extract_first().strip()
     item['directors'] = response.xpath('.//*/div[@class="credit_summary_item"]/a/text()').extract_first.strip()
@@ -55,7 +55,7 @@ class ImdbSpider_2(scrapy.Spider):
     for cast in response.xpath(".//table[@class='cast_list]/tr")[1:]:
       actor = ActorItem()
 
-      actor['actor_name']= cast.xpath("./td[2]/a/text()").extract_first().strip()
+      actor['actor_name'] = cast.xpath("./td[2]/a/text()").extract_first().strip()
       actor['character'] = cast.xpath("./td[@class='character']/a/text()").extract_first()
 
       item['cast'].append(actor)
@@ -65,7 +65,7 @@ class ImdbSpider_2(scrapy.Spider):
 from scrapy.crawler import CrawlerProcess
 process = CrawlerProcess(settings={
     "FEEDS": {
-        "output.csv": {"format": "csv"},
+        "../Output/output_imdb2.csv": {"format": "csv"},
     },
 })
 
