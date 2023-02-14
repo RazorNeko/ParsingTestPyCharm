@@ -24,7 +24,7 @@ class ImdbSpider(scrapy.Spider):
 from scrapy.crawler import CrawlerProcess
 process = CrawlerProcess(settings={
     "FEEDS": {
-        "output_imdb.csv": {"format": "csv"},
+        "Output/output_imdb.csv": {"format": "csv"},
     },
 })
 
