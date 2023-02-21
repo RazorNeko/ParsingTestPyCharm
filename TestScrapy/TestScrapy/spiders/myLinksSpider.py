@@ -13,7 +13,7 @@ html_list = []
 
 class BookSpider(scrapy.Spider):
     name = 'links'
-    start_urls = ['https://xxx24.tv/post/worship-your-goddess-18329059']
+    start_urls = ['']
 
     def parse(self, response):
         for l in html_list:
