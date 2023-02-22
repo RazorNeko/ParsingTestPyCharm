@@ -33,3 +33,5 @@ process = CrawlerProcess(settings={
 
 process.crawl(ProxyList)
 process.start()
+
+# Добавил файл с парсом прокси листа
